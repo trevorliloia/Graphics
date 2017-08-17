@@ -39,7 +39,9 @@ bool Context::init(size_t width, size_t height, const char * title)
 bool Context::getKey(int key)
 {
 	return glfwGetKey(handle, key);
+
 }
+
 
 bool Context::getMouseButton(int button)
 {
