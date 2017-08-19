@@ -21,6 +21,8 @@ int main()
 
 		Geometry gt = makeNGon(90000,1);
 
+		Geometry gb = makeCheckerboard(3, .2f);
+
 		const char* vsource =
 			"#version 450\n"
 			"layout(location = 0) in vec4 position;\n"
@@ -42,8 +44,8 @@ int main()
 
 	while (context.step())
 	{
-		s0_draw(f, s, g);
-		s0_draw(f, s, gt);
+		//s0_draw(f, s, g);
+		s0_draw(f, s, gb);
 	}
 
 	freeGeometry(g);
