@@ -40,3 +40,21 @@ void setUniform(const Shader &s, int location, const Texture &value, unsigned sl
 	glBindTexture(GL_TEXTURE_2D, value.handle);
 	glProgramUniform1i(s.handle, location, slot);
 }
+
+void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, float val)
+{
+	glProgramUniform1f(s.handle, loc_io++, val);
+}
+
+void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, int val)
+{
+	glProgramUniform1i(s.handle, loc_io++, val);
+}
+
+void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, const Texture & val)
+{
+	glActiveTexture(GL_TEXTURE0 + tex_io);
+	glBindTexture(GL_TEXTURE_2D, val.handle);
+
+	glProgramUniform1i(s.handle, loc_io++, tex_io++);
+}
