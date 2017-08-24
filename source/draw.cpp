@@ -51,6 +51,14 @@ void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, int v
 	glProgramUniform1i(s.handle, loc_io++, val);
 }
 
+
+
+
+//please work
+
+
+//please
+
 void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, const Texture & val)
 {
 	glActiveTexture(GL_TEXTURE0 + tex_io);
