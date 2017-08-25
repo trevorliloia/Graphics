@@ -62,6 +62,17 @@ Shader loadShader(const char *vpath, const char *fpath)
 	return retval;
 }
 
+
+glm::vec4 randColor()
+{
+	return
+	{
+		rand() / (float)RAND_MAX,
+		rand() / (float)RAND_MAX,
+		rand() / (float)RAND_MAX, 1
+	};
+}
+
 Geometry loadGeometry(const char * path)
 {
 	Geometry retval = {0,0,0,0};
@@ -70,23 +81,34 @@ Geometry loadGeometry(const char * path)
 	std::vector<tinyobj::material_t> materials;
 	std::string err;
 
+	
 	tinyobj::LoadObj(&attrib, &shapes, &materials, &err, path);
-
-	size_t vsize = attrib.vertices.size()/3;
-	Vertex *verts = new Vertex[vsize];
-
-	for (size_t i = 0; i < vsize; ++i)
-	{
-		const float *p = &attrib.vertices[i * 3];
-		verts[i].pos = {p[0], p[1], p[2], 1};
-	}
 
 	size_t isize = shapes[0].mesh.indices.size();
 	size_t *indices = new unsigned[isize];
-	for (size_t i = 0; i < isize; ++i)
+
+
+	size_t vsize = isize;
+	Vertex *verts = new Vertex[vsize];
+
+	for (int i = 0; i < isize; ++i)
 	{
-		indices[i] = shapes[0].mesh.indices[i].vertex_index;
+		indices[i] = i;
+
+		int pi = shapes[0].mesh.indices[i].vertex_index;
+		int ni = shapes[0].mesh.indices[i].normal_index;
+		int ti = shapes[0].mesh.indices[i].texcoord_index;
+
+		const float *p = &attrib.vertices[pi*3];
+		const float *n = &attrib.normals[ni*3];
+		const float *t = &attrib.texcoords[ti*2];
+
+
+		verts[i].pos = {p[0], p[1], p[2], 1};
+		verts[i].norm = { n[0], n[1], n[2], 0 };
+		verts[i].uv = { t[0], t[1] };
 	}
+
 
 
 	retval = makeGeometry(verts, vsize, indices, isize);
