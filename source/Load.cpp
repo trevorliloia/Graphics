@@ -109,7 +109,7 @@ Geometry loadGeometry(const char * path)
 		verts[i].uv = { t[0], t[1] };
 	}
 
-
+	solveTangents(verts, vsize, indices, isize);
 
 	retval = makeGeometry(verts, vsize, indices, isize);
 

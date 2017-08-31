@@ -1,3 +1,6 @@
+
+#define GLM_FORCE_SWIZZLE
+
 #include "glinc.h"
 #include "graphics\RenderObjects.h"
 #include "graphics\Vertex.h"
@@ -5,6 +8,37 @@
 #ifdef _DEBUG
 #include<iostream>
 #endif
+
+
+glm::vec4 calcTangent(const Vertex &v0, const Vertex &v1, const Vertex &v2)
+{
+	glm::vec4 p1 = v1.pos - v0.pos;
+	glm::vec4 p2 = v2.pos - v0.pos;
+
+	glm::vec2 t1 = v1.uv - v0.uv;
+	glm::vec2 t2 = v2.uv - v0.uv;
+
+	return glm::normalize((p1*t2.y - p2*t1.y) / (t1.x*t2.y - t1.y*t2.x));
+}
+
+void solveTangents(Vertex * v, size_t vsize, const unsigned * idxs, size_t isize)
+{
+	for (int i = 0; i < isize; i += 3)
+	{
+		glm::vec4 T = calcTangent(v[idxs[i]], v[idxs[i] + 1], v[idxs[i] + 2]);
+
+		for (int j = 0; j < 3; ++j)
+		{
+			v[idxs[i + j]].tangent = glm::normalize(T + v[idxs[i + j]].tangent);
+		}
+	}
+
+
+	for (int i = 0; i < vsize; ++i)
+	{
+		v[i].bitangent = glm::vec4(glm::cross(v[i].norm.xyz(), v[i].tangent.xyz()), 0);
+	}
+}
 
 Geometry makeGeometry(const Vertex *verts, size_t vsize,
 	const unsigned *idxs, size_t isize)
@@ -38,6 +72,12 @@ Geometry makeGeometry(const Vertex *verts, size_t vsize,
 
 	glEnableVertexAttribArray(3);
 	glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)40);
+
+	glEnableVertexAttribArray(4);
+	glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)56);
+
+	glEnableVertexAttribArray(5);
+	glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)72);
 
 	//unbind
 	glBindVertexArray(0);

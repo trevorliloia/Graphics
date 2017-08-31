@@ -9,4 +9,7 @@ struct Vertex
 	vec4 color;
 	vec2 uv;
 	vec4 norm;
+
+	vec4 tangent;
+	vec4 bitangent;
 };
