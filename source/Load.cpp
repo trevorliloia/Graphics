@@ -104,9 +104,9 @@ Geometry loadGeometry(const char * path)
 		const float *t = &attrib.texcoords[ti*2];
 
 
-		verts[i].pos = {p[0], p[1], p[2], 1};
-		verts[i].norm = { n[0], n[1], n[2], 0 };
-		verts[i].uv = { t[0], t[1] };
+		verts[i].position = {p[0], p[1], p[2], 1};
+		verts[i].normal = { n[0], n[1], n[2], 0 };
+ 		verts[i].texcoord = { t[0], t[1] };
 	}
 
 	solveTangents(verts, vsize, indices, isize);

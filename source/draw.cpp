@@ -88,3 +88,10 @@ void _internal::t_setUniform(const Shader &s, int &loc_io, int & tex_io, const g
 
 	glProgramUniform3fv(s.handle, loc_io++, 1, glm::value_ptr(val));
 }
+
+
+void _internal::t_setUniform(const Shader &s, int &loc_io, int & tex_io, const glm::vec4 &val)
+{
+
+	glProgramUniform4fv(s.handle, loc_io++, 1, glm::value_ptr(val));
+}
