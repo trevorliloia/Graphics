@@ -11,13 +11,20 @@ void s0_draw(const Framebuffer &f, const Shader &s, const Geometry &g);
 
 void clearFramebuffer(const Framebuffer & r, bool color = true, bool depth = true);
 
+
+
 void setUniform(const Shader &s, int location, float value);
 
 void setUniform(const Shader &s, int location, int value);
 
 void setUniform(const Shader &s, int location, const Texture &value, unsigned slot);
 
-enum RenderFlag {DEPTH = 1};
+enum RenderFlag
+{
+	NONE = 0,
+	DEPTH = 1,
+	ADDITIVE = 2
+};
 
 void setFlags(int flags);
 

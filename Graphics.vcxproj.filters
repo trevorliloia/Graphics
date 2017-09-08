@@ -30,6 +30,9 @@
     <ClCompile Include="source\Load.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="include\graphics\GameObjects.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\graphics\Context.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\Load.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GameObjects.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -231,6 +231,9 @@ Texture makeTex(unsigned w, unsigned h, unsigned c, const void *pixels, bool isF
 	glTexImage2D(GL_TEXTURE_2D, 0, ((isFloat || c == 0)? i : f), w, h, 0, f, (isFloat ? GL_FLOAT : GL_UNSIGNED_BYTE), pixels);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+	
+	retval.h = h;
+	retval.w = w;
 
 	return retval;
 }

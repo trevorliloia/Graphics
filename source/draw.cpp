@@ -46,6 +46,13 @@ void setFlags(int flags)
 {
 	if (flags & RenderFlag::DEPTH) glEnable(GL_DEPTH_TEST);
 	else glDisable(GL_DEPTH_TEST);
+
+	if (flags & RenderFlag::ADDITIVE)
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE);
+	}
+	else glDisable(GL_BLEND);
 }
 
 void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, float val)
@@ -60,11 +67,6 @@ void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, int v
 
 
 
-
-//please work
-
-
-//please
 
 void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, const Texture & val)
 {

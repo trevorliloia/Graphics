@@ -35,12 +35,12 @@ float calc_phong(in vec3 N, in vec3 L, in vec3 V, in float specPower);
 // AMBIENT
 // ATTENUATION
 
-void main()
+void main0()
 {
 	outFinal = vec4(1,1,0,1);
 }
 
-void main1()
+void main()
 {
 	outFinal = vec4(1,1,0,1);
 
