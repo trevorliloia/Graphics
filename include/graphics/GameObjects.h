@@ -1,6 +1,8 @@
 #pragma once
 #include "glm\glm.hpp"
 #include "glm\ext.hpp"
+#include <cstdlib>
+#include <list>
 #include "RenderObjects.h"
 
 
@@ -12,6 +14,9 @@ struct Camera
 
 struct SpecGloss
 {
+	void initLoad(const char* geoName, const char* diffName, const char* specName, const char* normName, int glossVal);
+	void initLoad(Geometry g, const char* diffName, const char* specName, const char* normName, int glossVal);
+
 	Geometry geo;
 	glm::mat4 model;
 	Texture diffuse;
@@ -31,6 +36,7 @@ struct StandardLight
 
 struct DirectionalLight
 {
+	void initLight(float r, float i, glm::vec4 clr, glm::vec3 dir);
 	glm::vec3 target;
 	float range;
 	glm::vec3 direction;
@@ -47,6 +53,14 @@ struct DirectionalLight
 
 	glm::vec4 color;
 	float intensity;
+};
+
+struct Scene
+{
+	Framebuffer screen;
+	Camera cam;
+	void initCam();
+	void initBuffer();
 };
 
 namespace _internal
