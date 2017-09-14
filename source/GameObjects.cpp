@@ -37,10 +37,18 @@ void Scene::initBuffer()
 	screen = { 0, 1280, 720 };
 }
 
-
-void SpecGloss::initLoad(const char * geoName, const char * diffName, 
-			const char * specName, const char * normName, int glossVal)
+void DirectionalLight::initLight(std::string n, float r, float i, glm::vec4 clr, glm::vec3 dir)
 {
+	name = n;
+	range = r;
+	intensity = i;
+	color = clr;
+	direction = dir;
+}
+
+void SpecGloss::initLoad(std::string n, char * geoName, const char * diffName, const char * specName, const char * normName, int glossVal)
+{
+	name = n;
 	std::string temp = (std::string("../../resources/models/") + std::string(geoName));
 	geo = loadGeometry(temp.c_str());
 	temp = (std::string("../../resources/textures/") + std::string(diffName));
@@ -52,8 +60,9 @@ void SpecGloss::initLoad(const char * geoName, const char * diffName,
 	gloss = glossVal;
 }
 
-void SpecGloss::initLoad(Geometry g, const char * diffName, const char * specName, const char * normName, int glossVal)
+void SpecGloss::initLoad(std::string n, Geometry g, const char * diffName, const char * specName, const char * normName, int glossVal)
 {
+	name = n;
 	geo = g;
 	std::string temp = (std::string("../../resources/textures/") + std::string(diffName));
 	diffuse = loadTexture(temp.c_str());
@@ -62,12 +71,4 @@ void SpecGloss::initLoad(Geometry g, const char * diffName, const char * specNam
 	temp = (std::string("../../resources/textures/") + std::string(normName));
 	normal = loadTexture(temp.c_str());
 	gloss = glossVal;
-}
-
-void DirectionalLight::initLight(float r, float i, glm::vec4 clr, glm::vec3 dir)
-{
-	range = r;
-	intensity = i;
-	color = clr;
-	direction = dir;
 }

@@ -21,22 +21,22 @@ void main()
 	SpecGloss objects[8];
 
 	/// floor
-	objects[0].initLoad(quad, "four_diffuse.tga", "four_specular.tga", "four_normal.tga", 4);
+	objects[0].initLoad("quad", quad, "four_diffuse.tga", "four_specular.tga", "four_normal.tga", 4);
 
 	objects[0].model = glm::rotate(glm::radians(90.f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(5, 5, 1));
 	/// Soulspear
-	objects[1].initLoad("soulspear.obj", "soulspear_diffuse.tga", 
+	objects[1].initLoad("spear", "soulspear.obj", "soulspear_diffuse.tga", 
 						"soulspear_specular.tga", "soulspear_normal.tga", 4);
 	/// Earth
-	objects[2].initLoad("sphere.obj", "earth_diffuse.jpg",
+	objects[2].initLoad("sphere", "sphere.obj", "earth_diffuse.jpg",
 						"earth_specular.jpg", "earth_normal.jpg", 4);
 	objects[2].model = glm::scale(glm::vec3(2, 2, 2)) * glm::translate(glm::vec3(2, 1, -1));
 
 	curScene.initCam();
 
 	DirectionalLight dlights[2];
-	dlights[0].initLight(10, 1, glm::vec4(1, 1, 0, 1), glm::vec3(1, 0, 0));
-	dlights[1].initLight(10, 1, glm::vec4(0, 0, 1, 1), glm::vec3(-1, 0, 0));
+	dlights[0].initLight("dLightZero", 10, 1, glm::vec4(1, 1, 0, 1), glm::vec3(1, 0, 0));
+	dlights[1].initLight("dLightOne", 10, 1, glm::vec4(0, 0, 1, 1), glm::vec3(-1, 0, 0));
 
 	Shader gpass = loadShader("../../resources/shaders/gpass.vert", "../../resources/shaders/gpass.frag");
 	Shader cpass = loadShader("../../resources/shaders/cpass.vert", "../../resources/shaders/cpass.frag");

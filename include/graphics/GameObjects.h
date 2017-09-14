@@ -14,9 +14,9 @@ struct Camera
 
 struct SpecGloss
 {
-	void initLoad(const char* geoName, const char* diffName, const char* specName, const char* normName, int glossVal);
-	void initLoad(Geometry g, const char* diffName, const char* specName, const char* normName, int glossVal);
-
+	void initLoad(std::string n, char* geoName, const char* diffName, const char* specName, const char* normName, int glossVal);
+	void initLoad(std::string n, Geometry g, const char* diffName, const char* specName, const char* normName, int glossVal);
+	std::string name;
 	Geometry geo;
 	glm::mat4 model;
 	Texture diffuse;
@@ -36,7 +36,8 @@ struct StandardLight
 
 struct DirectionalLight
 {
-	void initLight(float r, float i, glm::vec4 clr, glm::vec3 dir);
+	void initLight(std::string n, float r, float i, glm::vec4 clr, glm::vec3 dir);
+	std::string name;
 	glm::vec3 target;
 	float range;
 	glm::vec3 direction;
