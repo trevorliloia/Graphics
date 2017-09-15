@@ -28,6 +28,7 @@ void _internal::t_setUniform(const Shader & s, int & loc_io, int & tex_io, const
 
 void Scene::initCam()
 {
+	cam.name = "mainCam";
 	cam.view = glm::lookAt(glm::vec3(0, 2, 5), glm::vec3(0, 1, 0), glm::vec3(0, 1, 0));
 	cam.proj = glm::perspective(45.f, 1280.f / 720.f, 1.f, 10.f);
 }

@@ -8,6 +8,7 @@
 
 struct Camera
 {
+	std::string name;
 	glm::mat4 proj;
 	glm::mat4 view;
 };
@@ -27,6 +28,7 @@ struct SpecGloss
 
 struct StandardLight
 {
+	std::string name;
 	glm::vec3 dir;
 	glm::vec4 color;
 	float intensity;

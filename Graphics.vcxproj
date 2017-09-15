@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\AssetManager.cpp" />
     <ClCompile Include="source\GameObjects.cpp" />
     <ClCompile Include="source\Context.cpp" />
     <ClCompile Include="source\draw.cpp" />
