@@ -4,6 +4,7 @@
 #include "glm\ext.hpp"
 #include "graphics\Context.h"
 #include "graphics\draw.h"
+#include "graphics\AssetManager.h"
 
 void main()
 {
@@ -11,6 +12,7 @@ void main()
 	context.init(1280, 720);
 
 	Scene curScene;
+	AssetManager manager;
 
 	Vertex vquad[] = { { { -1,-1,0,1 },{},{ 0,0 },{ 0,0,1,0 } },{ { 1,-1,0,1 },{},{ 1,0 },{ 0,0,1,0 } },{ { 1, 1,0,1 },{},{ 1,1 },{ 0,0,1,0 } },{ { -1, 1,0,1 },{},{ 0,1 },{ 0,0,1,0 } } };
 	unsigned quadidx[] = { 0,1,3, 1,2,3 };
@@ -22,6 +24,8 @@ void main()
 
 	/// floor
 	objects[0].initLoad("quad", quad, "four_diffuse.tga", "four_specular.tga", "four_normal.tga", 4);
+
+	manager.objects[objects[0].name] = objects[0];
 
 	objects[0].model = glm::rotate(glm::radians(90.f), glm::vec3(-1, 0, 0)) * glm::scale(glm::vec3(5, 5, 1));
 	/// Soulspear

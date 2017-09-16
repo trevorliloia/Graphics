@@ -8,9 +8,14 @@
 
 struct AssetManager
 {
-	Camera cams[8];
+	map<std::string, Camera> cams;
 	map<std::string, SpecGloss> objects;
-	StandardLight stdLights[8];
-	DirectionalLight dirLights[64];
+	map<std::string, StandardLight> stdLights;
+	map<std::string, DirectionalLight> dirLights;
+
+	
+	Camera findCam(std::string name);
 	SpecGloss findObj(std::string name);
+	StandardLight findSL(std::string name);
+	DirectionalLight findDL(std::string name);
 };
